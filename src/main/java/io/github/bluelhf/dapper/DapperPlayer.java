@@ -15,6 +15,8 @@ public class DapperPlayer implements AutoCloseable {
     private AudioDevice audio;
     private boolean complete;
 
+    private Runnable onComplete;
+
     private boolean paused;
 
     public DapperPlayer(File file) throws FileNotFoundException {
@@ -45,6 +47,10 @@ public class DapperPlayer implements AutoCloseable {
         }
     }
 
+    public DapperPlayer setOnComplete(Runnable r) {
+        onComplete = r;
+        return this;
+    }
 
     public CompletableFuture<Void> play() {
         return CompletableFuture.runAsync(() -> {
@@ -62,6 +68,7 @@ public class DapperPlayer implements AutoCloseable {
                     this.close();
                 }
             }
+            if (onComplete != null) onComplete.run();
         });
     }
 

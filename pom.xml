@@ -6,7 +6,7 @@
 
     <groupId>io.github.bluelhf</groupId>
     <artifactId>Dapper</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <description>
         A JLayer-based MP3 player
